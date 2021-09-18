@@ -9,14 +9,13 @@ import debounce from "lodash/debounce";
 import api from "../../services/api";
 import { logout } from "../../services/auth";
 
-import Properties from "./components/Properties";
-import Button from "./components/Button";
+import Properties from "../App/components/Properties";
+import Button from "../App/components/Button";
 
 import AddProperty from "../AddProperty";
 import Property from "../Property";
 
-import { Container, ButtonContainer, PointReference } from "./styles";
-
+import { Container, ButtonContainer, PointReference } from "../App/styles";
 
 const TOKEN =
   "pk.eyJ1IjoiaGlnb3JvY2tldCIsImEiOiJjamlrdWJuY3gyaHYxM3Bvbmg0cGRwY3R0In0._TdjX9rYrjZ6Q6FFXOGwsQ";
@@ -57,7 +56,6 @@ class Map extends Component {
 
   loadProperties = async () => {
     const { latitude, longitude } = this.state.viewport;
-    
   };
 
   handleLogout = e => {
@@ -68,7 +66,9 @@ class Map extends Component {
   handleAddProperty = () => {
     const { match, history } = this.props;
     const { latitude, longitude } = this.state.viewport;
-    
+    history.push(
+      `${match.url}/properties/add?latitude=${latitude}&longitude=${longitude}`
+    );
 
     this.setState({ addActivate: false });
   };
@@ -97,6 +97,12 @@ class Map extends Component {
           <div>
             <button onClick={this.handleAddProperty} type="button">
               Adicionar
+            </button>
+            <button
+              onClick={() => this.setState({ addActivate: false })}
+              className="cancel"
+            >
+              Cancelar
             </button>
             <button
               onClick={() => this.setState({ addActivate: false })}
@@ -148,10 +154,10 @@ class Map extends Component {
 }
 
 const DimensionedMap = withRouter(Dimensions()(Map));
-const App = () => (
+const App2 = () => (
   <Container>
     <DimensionedMap />
   </Container>
 );
 
-export default App;
+export default App2;

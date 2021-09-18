@@ -46,7 +46,7 @@ class AddProperty extends Component {
     return !files.length ? (
       <p>Jogue as imagens ou clique aqui para adiciona-las</p>
     ) : (
-      files.map(file => <img key={file.name} src={file.preview} />)
+      files.map(file => <img key={file.name} src={file.preview} alt='' />)
     );
   }
 

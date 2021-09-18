@@ -19,7 +19,7 @@ export const Form = styled.form`
     margin: 10px 0 40px;
   }
   p {
-    color: #ff3333;
+    color: #000000;
     margin-bottom: 15px;
     border: 1px solid #ff3333;
     padding: 10px;
